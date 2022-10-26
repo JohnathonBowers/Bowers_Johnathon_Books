@@ -6,3 +6,7 @@ from flask_app.models.author import Author
 @app.route('/')
 def home():
     return redirect ('/authors')
+
+@app.route('/authors')
+def r_show_authors():
+    return render_template('add_author.html', authors = Author.get_all_authors)
