@@ -17,9 +17,9 @@ class Book:
     
     @classmethod
     def get_all_books(cls):
-        query = "SELECT * FROM books ORDER BY name ASC;"
-        results:list[dict] = connectToMySQL("books_authors_schema").query_db(query)
-        book_objects:list[object] = []
+        query = "SELECT * FROM books ORDER BY title ASC;"
+        results = connectToMySQL("books_authors_schema").query_db(query)
+        book_objects = []
         for book in results:
             book_objects.append(cls(book))
         return book_objects

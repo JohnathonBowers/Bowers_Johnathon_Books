@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <!-- For this assignment, I'm reusing code from the Dojos and Ninjas CRUD assignment so that I can work on implementing the many-to-many functionality -->
+    <!-- For this assignment, I'm reusing code from the Dojos and Ninjas CRUD assignment so that I can focus on implementing the many-to-many functionality -->
     <nav class="navbar bg-light">
         <div class="container d-flex justify-content-start">
             <a class="navbar-brand" href="/authors">
@@ -27,23 +27,23 @@
         <div class="container me-3 col-lg-4">
             <div class="container border border-secondary text-dark justify-content-start p-4">
                 <h2 class="mb-4">Add an Author</h2>
-                <form action="/dojos/add" method="post" class="justify-content-start">
+                <form action="/authors/add" method="post" class="justify-content-start">
                     <div class="d-flex flex-row align-items-center mb-4">
                         <label for="name" class="form-label me-2 my-auto">Name:</label>
-                        <input name="name" type="text" class="form-control" placeholder="e.g., Seattle">
+                        <input name="name" type="text" class="form-control" placeholder="e.g., James Baldwin">
                     </div>
-                    <button class="btn btn-primary btn-outline-dark text-white">Submit</button>
+                    <button class="btn btn-primary btn-outline-dark text-white">Add</button>
                 </form>
             </div>
         </div>
         <div class="container ms-3 col-lg-4 p-4">
             <h1 class="mb-4">All Authors</h1>
             <table class="table table-striped table-hover table-bordered">
-                <tbody class="text-center"> <!-- I learned the "if dojos" code from Stack Overflow -->
-                    {% if dojos %}
-                        {% for dojo in dojos %}
+                <tbody class="text-center">
+                    {% if authors %}
+                        {% for author in authors %}
                             <tr>
-                                <td><a href="/dojos/{{ dojo.id }}">{{ dojo.name }}</a></td>
+                                <td><a href="/authors/{{ author.id }}">{{ author.name }}</a></td>
                             </tr>
                         {% endfor %}
                     {% else %}
@@ -53,7 +53,7 @@
                     {% endif %}
                 </tbody>
             </table>
-            <a href="/ninjas" class="btn btn-warning btn-outline-dark mt-4">Add Ninja</a>
+            <a href="/books" class="btn btn-warning btn-outline-dark mt-4">Add Book</a>
         </div>
     </div>
 </body>

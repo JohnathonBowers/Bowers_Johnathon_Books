@@ -2,7 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models import book
 
 class Author:
-    def __init__(self, data):
+    def __init__(self, db_data):
         self.id = db_data["id"]
         self.name = db_data["name"]
         self.created_at = db_data["created_at"]
@@ -18,7 +18,7 @@ class Author:
     def get_all_authors(cls):
         query = "SELECT * FROM authors ORDER BY name ASC;"
         results = connectToMySQL("books_authors_schema").query_db(query)
-        author_objects:list[object] = []
+        author_objects = []
         for author in results:
             author_objects.append(cls(author))
         return author_objects
@@ -29,11 +29,11 @@ class Author:
         results = connectToMySQL("books_authors_schema").query_db(query, data)
         author = cls( results[0] )
         for row_from_db in results:
-            favorite_data = {
+            favorite_book_data = {
                 "id":row_from_db["favorites.id"],
                 "title":row_from_db["title"],
                 "num_of_pages":row_from_db["num_of_pages"],
                 "created_at":row_from_db["favorites.created_at"],
                 "updated_at":row_from_db["favorites.updated_at"]
             }
-            author.favorite_books.append(book.Book(favorite_data))
+            author.favorite_books.append(book.Book(favorite_book_data))
