@@ -37,3 +37,4 @@ class Book:
                 "updated_at":row_from_db["authors.updated_at"]
             }
             book.author_fans.append(author.Author(author_fan_data))
+        return book

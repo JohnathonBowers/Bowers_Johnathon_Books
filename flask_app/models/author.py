@@ -30,10 +30,11 @@ class Author:
         author = cls( results[0] )
         for row_from_db in results:
             favorite_book_data = {
-                "id":row_from_db["favorites.id"],
+                "id":row_from_db["books.id"],
                 "title":row_from_db["title"],
                 "num_of_pages":row_from_db["num_of_pages"],
-                "created_at":row_from_db["favorites.created_at"],
-                "updated_at":row_from_db["favorites.updated_at"]
+                "created_at":row_from_db["books.created_at"],
+                "updated_at":row_from_db["books.updated_at"]
             }
             author.favorite_books.append(book.Book(favorite_book_data))
+        return author
